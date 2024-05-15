@@ -1,25 +1,14 @@
 import { Elysia } from "elysia";
 
 import { setup } from "./setup";
-import { TestJSX } from "./test_jsx";
+import { routes } from "./routes";
 
 export const createServer = ({
     port = 3000
 } = {}) => {
     const app = new Elysia()
         .use(setup)
-        .get("/", 
-            (ctx) => {
-                ctx.log.info(ctx.path);
-                return 'success'
-            },
-            {
-                detail: {
-                  tags: ['App']
-                }
-              }
-        )
-        .get('/jsx', TestJSX)
+        .use(routes)
         .onError(({ code }) => {
             if (code === 'NOT_FOUND') {
                 return 'Route not found :('
