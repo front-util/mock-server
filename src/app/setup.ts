@@ -2,7 +2,6 @@
 import { Elysia } from "elysia";
 import { bearer } from '@elysiajs/bearer';
 import { cors } from '@elysiajs/cors';
-import { html } from '@elysiajs/html'
 import { staticPlugin } from '@elysiajs/static'
 import { logger } from "@bogeychan/elysia-logger";
 import { compression } from 'elysia-compression'
@@ -14,7 +13,6 @@ const di = {
 const plugins = new Elysia()
     .use(bearer())
     .use(cors())
-    .use(html())
     .use(staticPlugin())
     .use(compression())
     .use(logger({

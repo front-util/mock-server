@@ -4,7 +4,7 @@ GET http://localhost:3000/jsx
 GET http://localhost:3000/api/student?id=2
 
 ###
-GET http://localhost:3000/ui/test?id=2
+GET http://localhost:3000/ui/test?id=222
 
 ###
 GET http://localhost:3000/public/files/test.txt

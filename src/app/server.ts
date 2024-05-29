@@ -17,7 +17,7 @@ export const createServer = ({
         .listen(port)
 
     console.log(
-        `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+        `🦊 Mock server is running at ${app.server?.hostname}:${app.server?.port}`
     );
 };
 
