@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import { html } from '@elysiajs/html'
 
-import {Test, test2} from '#ui/test/Test'
+import {testHTML} from '#ui/testhtml/Test'
 
 export const routes = new Elysia({name: 'routes'})
     .group(
@@ -13,6 +13,5 @@ export const routes = new Elysia({name: 'routes'})
     .group(
         '/ui', 
         (app) => app
-            .get('/test', ({ query, html }) => html(Test.render(query)))
-            .get('/test2', test2)
+            .get('/test', ({ query, html }) => html(testHTML(query?.id ? +query.id : 0)))
     );
