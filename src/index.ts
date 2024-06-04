@@ -1,3 +1,5 @@
 import { createServer } from "#app";
 
-createServer();
+createServer({
+    port: 3000
+});

@@ -9,6 +9,7 @@
     "#public/*": "./public/*",
     "#app": "./src/app/index.ts",
     "#ui/*": "./src/ui/*",
+    "#libs/*": "./src/libs/*",
     "#*": "./src/*"
   },
   "dependencies": {
@@ -18,8 +19,11 @@
     "@elysiajs/html": "^1.0.2",
     "@elysiajs/static": "^1.0.3",
     "@elysiajs/swagger": "^1.0.4",
+    "@types/lodash": "^4.17.4",
     "elysia": "latest",
-    "elysia-compression": "^0.0.7"
+    "elysia-compression": "^0.0.7",
+    "lodash": "^4.17.21",
+    "lowdb": "^7.0.1"
   },
   "devDependencies": {
     "bun-types": "latest"

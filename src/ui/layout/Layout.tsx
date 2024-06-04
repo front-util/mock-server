@@ -1,4 +1,4 @@
-export const Layout = (props: Html.PropsWithChildren<{ head: string; title?: string }>) => {
+export const Layout = (props: Html.PropsWithChildren<{ head: JSX.Element; title?: string }>) => {
     return (
       <>
         {'<!doctype html>'}
