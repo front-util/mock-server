@@ -2,9 +2,11 @@
   "name": "mock-server",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "check-lint": "eslint . --max-warnings=0 --fix",
+    "publish:linter": "npm publish --access public"
   },
+  "type": "module",
   "imports": {
     "#public/*": "./public/*",
     "#app": "./src/app/index.ts",
@@ -26,6 +28,7 @@
     "lowdb": "^7.0.1"
   },
   "devDependencies": {
+    "@front-utils/linter": "^0.4.0",
     "bun-types": "latest"
   },
   "module": "src/index.js"
