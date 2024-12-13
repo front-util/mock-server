@@ -1,10 +1,25 @@
-import { createDatabase } from '#libs/database';
+import { createDatabase, type CreateDatabaseConfig } from '#libs/database';
+import { createDi } from '#libs/di';
+import { logger } from '#libs/logger';
 
-import {createServer, type MockServerConfig} from './server';
+import {
+    createServer, 
+    type MockServerConfig
+} from './server';
 
-export interface MockAppConfig extends MockServerConfig {}
+export type MockAppConfig = MockServerConfig & CreateDatabaseConfig;
 
-export const startApp = (config: MockAppConfig) => {
-    createServer(config);
-    createDatabase()
-}
+export const startApp = async <D extends object>({
+    pathToDb,
+    ...config
+}: MockAppConfig | undefined = {}) => {
+    const di = createDi<D>();
+    const db = await createDatabase<D>({
+        pathToDb,
+    });
+    
+    di.register('db', db);
+    di.register('logger', logger);
+
+    return createServer(config, di);
+};

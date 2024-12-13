@@ -1,3 +1,11 @@
-import {simpleEslintConfig} from '@front-utils/linter';
+import { utils } from '@front-utils/linter';
 
-export default simpleEslintConfig;
+export default [
+    ...utils.createEslintConfig({
+    types: ['ts', 'react'],
+    files: [
+        'src/**/*.{ts,tsx,js}', 
+        'tests/*.test.ts', 
+        'build.ts'
+    ],
+})];

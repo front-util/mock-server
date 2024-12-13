@@ -1,10 +1,60 @@
-GET http://localhost:3000/jsx
+###
+GET http://localhost:8000/db?key=simpleArray
 
 ###
-GET http://localhost:3000/api/student?id=2
+PUT http://localhost:8000/db
+content-type: application/json
+
+{
+    "key": "simpleArray",
+    "value": ["test1"]
+}
 
 ###
-GET http://localhost:3000/ui/test?id=222
+PUT http://localhost:8000/db/push
+content-type: application/json
+
+{
+    "key": "simpleArray",
+    "value": "test2"
+}
 
 ###
-GET http://localhost:3000/public/files/test.txt
+PUT http://localhost:8000/db/replace
+content-type: application/json
+
+{
+    "config": "test config",
+    "simpleArray": ["test", "test2"]
+}
+
+###
+DELETE http://localhost:8000/db?key=test
+
+#######
+
+###
+GET http://localhost:8000/jsx
+
+###
+GET http://localhost:8000/ui/test
+
+###
+GET http://localhost:8000/api/student?id=2
+
+###
+GET http://localhost:8000/test
+
+######## static files
+
+###
+GET http://localhost:8000/static/test.css
+
+###
+GET http://localhost:8000/static/database/database.json
+
+###
+GET http://localhost:8000/static/files/styles.css
+
+###
+GET http://localhost:8000/static/ui/testhtml/style.css

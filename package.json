@@ -1,10 +1,20 @@
 {
-  "name": "mock-server",
-  "version": "1.0.50",
+  "name": "@front-utils/mock-json-api",
+  "version": "0.1.0",
+  "author": "IVGolubev",
+  "description": "Bun mock server with Elysia and Lowdb",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:front-util/mock-server.git"
+  },
   "scripts": {
-    "dev": "bun run --watch src/index.ts",
-    "check-lint": "eslint . --max-warnings=0 --fix",
-    "publish:linter": "npm publish --access public"
+    "dev": "bun run --watch bin/start.ts",
+    "check-lint": "eslint --max-warnings=0 --fix",
+    "check-types": "tsc --noEmit",
+    "lint": "bun run check-types & bun run check-lint",
+    "test": "bun test",
+    "pub": "bun run build && npm publish --access public",
+    "build": "bun build.ts"
   },
   "type": "module",
   "imports": {
@@ -14,22 +24,74 @@
     "#libs/*": "./src/libs/*",
     "#*": "./src/*"
   },
+  "exports": {
+    "./dist": "./dist/index.js",
+    "./types/*": "./dist/*.d.ts",
+    "./types": "./dist/index.d.ts",
+    "./types/index.d.ts": "./dist/index.d.ts",
+    ".": "./src/index.ts"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
+  "simple-git-hooks": {
+    "pre-commit": "bunx lint-staged --no-stash",
+    "pre-push": "bun run test",
+    "preserveUnused": true
+  },
+  "publishConfig": {
+    "access": "public",
+    "ignore": [
+      ".github/",
+      "tsconfig.json"
+    ]
+  },
+  "keywords": [
+    "Bun",
+    "Server",
+    "Mocks",
+    "Json DB",
+    "Elysia",
+    "Lowdb"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@bogeychan/elysia-logger": "^0.0.21",
-    "@elysiajs/bearer": "^1.0.2",
-    "@elysiajs/cors": "^1.0.2",
-    "@elysiajs/html": "^1.0.2",
-    "@elysiajs/static": "^1.0.3",
-    "@elysiajs/swagger": "^1.0.4",
-    "@types/lodash": "^4.17.4",
-    "elysia": "latest",
-    "elysia-compression": "^0.0.7",
-    "lodash": "^4.17.21",
+    "@chneau/elysia-compression": "^1.0.11",
+    "@elysiajs/bearer": "^1.1.2",
+    "@elysiajs/cors": "^1.1.1",
+    "@elysiajs/html": "^1.1.1",
+    "@elysiajs/static": "^1.1.1",
+    "@elysiajs/swagger": "^1.1.6",
+    "elysia": "^1.1.26",
     "lowdb": "^7.0.1"
   },
   "devDependencies": {
-    "@front-utils/linter": "^0.4.0",
-    "bun-types": "latest"
-  },
-  "module": "src/index.js"
+    "@eslint/js": "^9.13.0",
+    "@front-utils/linter": "^1.0.1",
+    "@types/bun": "^1.1.14",
+    "@types/compressible": "^2.0.2",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.9.1",
+    "bun": "^1.1.36",
+    "bun-plugin-dts": "^0.3.0",
+    "bun-types": "latest",
+    "eslint": "^9.13.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-compat": "^6.0.1",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-optimize-regex": "^1.2.1",
+    "eslint-plugin-promise": ">=6.0.0",
+    "eslint-plugin-sonarjs": "^1.0.4",
+    "globals": "^15.11.0",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.6.3",
+    "typescript-eslint": ">=8.0.0"
+  }
 }

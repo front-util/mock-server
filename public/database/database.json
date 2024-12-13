@@ -1,3 +1,9 @@
 {
-    "test": "test"
+  "config": "test config",
+  "simpleArray": [
+    "test655",
+    "test12",
+    "test1",
+    "test1"
+  ]
 }
